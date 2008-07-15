@@ -1,0 +1,15 @@
+#!/bin/sh /usr/share/dpatch/dpatch-run
+## 10-kolabconf-perl-path.dpatch by Mathieu Parent <mat.parent@gmaiL.com>
+##
+## DP: have the good perl path
+
+@DPATCH@
+diff -Nwru kolabconf-2.2~rc1+20080204~/ kolabconf-2.2~rc1+20080204/
+--- kolabconf-2.2~rc1+20080204~/bin/kolabconf.in	2008-02-17 11:18:00.000000000 +0100
++++ kolabconf-2.2~rc1+20080204/bin/kolabconf.in	2008-02-17 11:22:19.000000000 +0100
+@@ -1,4 +1,4 @@
+-#!perl
++#!/usr/bin/perl
+ 
+ ##  COPYRIGHT
+ ##  ---------

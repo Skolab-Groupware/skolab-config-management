@@ -1,0 +1,17 @@
+kolabconf (2.2.0-1) unstable; urgency=low
+
+  * New upstream version: 2.2.0
+    - Upstream split of kolabd package
+    - ported patch 30-invoke-rc from kolabd
+    - Added, then removed 80-kolab-syslog-facility.dpatch: applied upstream
+    - Added, then removed 50-postfix-hashes.dpatch: use of RUNONCHANGE in the
+      corresponding kolabd templates is better
+  * Added 95-runonchange patch: fix RUNONCHANGE templace metadata
+    - to execute even with special cases (postfix, ldap, ...)
+    - to execute when creating the file
+  * patch 10-kolabconf-perl-path: fix perl path
+  * patch 85-slapd-syncrepl-24: use syncrepl instead of slurpd
+  * Bump Standards-Version to 3.8.0 (updated Vcs-Browser and Vcs-Svn
+    fields) 
+
+ -- Mathieu Parent <math.parent@gmail.com>  Tue, 15 Jul 2008 14:01:56 +0200

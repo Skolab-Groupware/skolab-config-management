@@ -1,0 +1,41 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 95-runonchange.dpatch by Mathieu Parent <math.parent@gmail.com>
+## 
+## DP: Fix RUNONCHANGE templace metadata
+## DP: See https://www.intevation.de/roundup/kolab/issue2550
+
+@DPATCH@
+diff -urNad kolabconf-2.2~rc2+20080314~/lib/Kolab/Conf.pm kolabconf-2.2~rc2+20080314/lib/Kolab/Conf.pm
+--- kolabconf-2.2~rc2+20080314~/lib/Kolab/Conf.pm	2008-04-26 13:21:55.000000000 +0200
++++ kolabconf-2.2~rc2+20080314/lib/Kolab/Conf.pm	2008-04-26 13:23:54.000000000 +0200
+@@ -100,6 +100,11 @@
+ 	);
+ 
+     my $oldmask = umask 077;
++    #creating the config file is changing it
++    if (! -f $cfg) { 
++        $templatehaschanged{$tmpl} = 1;
++        Kolab::log('T', "`$cfg' creation detected", KOLAB_DEBUG );
++    }
+     copy($cfg, $oldcfg);
+     #chown($Kolab::config{'kolab_uid'}, $Kolab::config{'kolab_gid'}, $oldcfg);
+     # To avoid warnings, the backup files must be owned by root
+@@ -243,8 +248,8 @@
+ #} elsif ($cfg =~ /example/) {
+ 	    } else {
+ 		Kolab::log('T', "`$cfg' change detected ", KOLAB_DEBUG );
+-		$templatehaschanged{$tmpl} = 1;
+ 	    }
++	    $templatehaschanged{$tmpl} = 1;
+ 
+             Kolab::log('T', "`$cfg' change detected: $rc", KOLAB_DEBUG );
+         }
+@@ -675,7 +680,7 @@
+     foreach $key (keys %runonchange) {
+ 	if (defined $templatehaschanged{$key})
+ 	{
+-	    Kolab::log('T', 'Actioning RUNONCHANGE for $key', KOLAB_DEBUG );
++	    Kolab::log('T', 'Actioning RUNONCHANGE for '.$key, KOLAB_DEBUG );
+ 	    my $cmd = $runonchange{$key};
+ 	    system($cmd);
+ 	    Kolab::log('T', 'Executing command', KOLAB_DEBUG );

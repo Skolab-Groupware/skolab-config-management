@@ -1,0 +1,58 @@
+This package was debianized by Mathieu Parent <math.parent@gmail.com> on
+Tue, 15 Jan 2008 23:43:47 +0100.
+
+It was downloaded from <http://kolab.org/>
+
+Copyright Holder (taken from AUTHORS):
+
+Originally written by Stuart Bingë <s.binge@codefusion.co.za>
+
+  Copyright (c) 2003 - 2004  Stuart Bingë
+  Copyright (c) 2003 - 2004  Code Fusion cc
+
+Portions based on work by the following people:
+
+  (c) 2003         Tassilo Erlewein     <tassilo.erlewein@erfrakon.de>
+  (c) 2003         Achim Frank          <achim.frank@erfrakon.de>
+  (c) 2004         Stephan Buys         <s.buys@codefusion.co.za>
+  (c) 2005 - 2006  Richard Bos          <richard@radoeka.nl>
+  (c) 2005 - 2006  Marcus Hüwe          <suse-tux@gmx.de>
+  (c) 2004 - 2006  Steffen Hansen       <steffen@klaralvdalens-datakonsult.se>
+  (c) 2006 - 2007  Gunnar Wrobel        <wrobel@pardus.de>
+  (c) 2003 - 2007  Martin Konold        <martin.konold@erfrakon.de>
+
+
+Portions based on work by the following companies:
+
+  (c) 2003         Code Fusion cc
+  (c) 2004 - 2006  Klaraelvdalens Datakonsult AB
+  (c) 2007         p@rdus
+  (c) 2003 - 2007  Erfrakon
+
+
+Contributions by the following people:
+
+Joergen Fjeld        <jhf@linpro.no>
+Thomas Arendsen Hein <thomas@intevation.de>
+Bernhard Herzog      <bh@intevation.de>
+
+
+License:
+
+   This package is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This package is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this package; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+On Debian systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL'.
+
