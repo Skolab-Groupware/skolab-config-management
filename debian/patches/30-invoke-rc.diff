@@ -4,10 +4,10 @@
 ## DP: Debian specific invocation of services
 
 @DPATCH@
-diff -urNad kolabconf-2.2~rc1+20080204~/lib/Kolab/Conf.pm kolabconf-2.2~rc1+20080204/lib/Kolab/Conf.pm
---- kolabconf-2.2~rc1+20080204~/lib/Kolab/Conf.pm	2008-02-17 21:22:21.000000000 +0100
-+++ kolabconf-2.2~rc1+20080204/lib/Kolab/Conf.pm	2008-02-17 21:26:05.000000000 +0100
-@@ -724,22 +724,22 @@
+diff -urNad kolabconf-2.2.0~/lib/Kolab/Conf.pm kolabconf-2.2.0/lib/Kolab/Conf.pm
+--- kolabconf-2.2.0~/lib/Kolab/Conf.pm	2008-10-14 19:50:45.000000000 +0200
++++ kolabconf-2.2.0/lib/Kolab/Conf.pm	2008-10-14 19:51:43.000000000 +0200
+@@ -724,38 +724,28 @@
  {
      if ($haschanged{'slapd'}) {
          &Kolab::log('K', 'Restarting OpenLDAP...');
@@ -34,10 +34,11 @@ diff -urNad kolabconf-2.2~rc1+20080204~/lib/Kolab/Conf.pm kolabconf-2.2~rc1+2008
      }
  
      if ($haschanged{'imapd'}) {
-@@ -748,16 +748,6 @@
-         system("$Kolab::config{'KOLABRC'} rc imapd restart");
-     }
- 
+         &Kolab::log('K', 'Restarting imapd...');
+ 	# Would it be enough with a reload here? /steffen
+-        system("$Kolab::config{'KOLABRC'} rc imapd restart");
+-    }
+-
 -    if ($haschanged{'amavisd'}) {
 -        &Kolab::log('K', 'Restarting amavisd...');
 -        system("$Kolab::config{'KOLABRC'} rc amavisd restart");
@@ -46,8 +47,7 @@ diff -urNad kolabconf-2.2~rc1+20080204~/lib/Kolab/Conf.pm kolabconf-2.2~rc1+2008
 -    if ($haschanged{'clamav'}) {
 -        &Kolab::log('K', 'Restarting clamav...');
 -        system("$Kolab::config{'KOLABRC'} rc clamav restart");
--    }
--
-     %Kolab::Conf::haschanged = ();
++        system("invoke-rc.d kolab-cyrus restart");
+     }
  
-     &Kolab::log('K', 'Reload finished');
+     %Kolab::Conf::haschanged = ();

@@ -8,10 +8,12 @@
 diff -urNad kolabconf-2.2~rc1+20080204~/lib/Kolab/Conf.pm kolabconf-2.2~rc1+20080204/lib/Kolab/Conf.pm
 --- kolabconf-2.2~rc1+20080204~/lib/Kolab/Conf.pm	2007-10-18 11:22:52.000000000 +0200
 +++ kolabconf-2.2~rc1+20080204/lib/Kolab/Conf.pm	2008-02-17 19:15:04.000000000 +0100
-@@ -526,23 +526,22 @@
+@@ -524,25 +524,44 @@
+         exit(1);
+     }
  
-     if( $Kolab::config{'is_master'} eq "true" ) {
- 	# Master setup
+-    if( $Kolab::config{'is_master'} eq "true" ) {
+-	# Master setup
 -	my @kh;
 -	if( ref $Kolab::config{'kolabhost'} eq 'ARRAY' ) {
 -	    @kh = @{$Kolab::config{'kolabhost'}};
@@ -24,13 +26,10 @@ diff -urNad kolabconf-2.2~rc1+20080204~/lib/Kolab/Conf.pm kolabconf-2.2~rc1+2008
 -		."  binddn=\"".$Kolab::config{'bind_dn'}."\"\n"
 -		."  bindmethod=simple credentials=".$Kolab::config{'bind_pw'}."\n\n";
 -	}
-+	# The master is already configured to be synchronisation provider in slapd.conf
-+	# Note that both masters and slaves are synchronisation providers.
-     } else {
- 	# Slave setup
- 	# Output an update dn statement instead
--	print $repl "updatedn ".$Kolab::config{'bind_dn'}."\n";
--	print $repl "updateref ".$Kolab::config{'ldap_master_uri'}."\n";
++    # directory_mode syncrepl is supported from openldap-2.3.x and beyond
++    if ($Kolab::config{'directory_mode'} eq "syncrepl" or $Kolab::config{'directory_mode'} eq "sync") {
++
++      if ( $Kolab::config{'is_master'} eq "false" ) {
 +        # Output a syncrepl statement for database synchronisation
 +        print $repl "syncrepl rid=0 \n"
 +                 ."         provider=".$Kolab::config{"ldap_master_uri"}."\n"
@@ -41,7 +40,35 @@ diff -urNad kolabconf-2.2~rc1+20080204~/lib/Kolab/Conf.pm kolabconf-2.2~rc1+2008
 +                 ."         binddn=\"".$Kolab::config{"bind_dn"}."\"\n"
 +                 ."         credentials=\"".$Kolab::config{"bind_pw"}."\"\n"
 +                 ."         bindmethod=simple\n";
++      }
 +
+     } else {
+-	# Slave setup
+-	# Output an update dn statement instead
+-	print $repl "updatedn ".$Kolab::config{'bind_dn'}."\n";
+-	print $repl "updateref ".$Kolab::config{'ldap_master_uri'}."\n";
++
++      if( $Kolab::config{'is_master'} eq "true" ) {
++  	# Master setup
++  	my @kh;
++  	if( ref $Kolab::config{'kolabhost'} eq 'ARRAY' ) {
++  	    @kh = @{$Kolab::config{'kolabhost'}};
++  	} else {
++  	    @kh = ( $Kolab::config{'kolabhost'} );
++  	}
++  	for my $h ( @kh ) {
++  	    next if lc($h) eq lc($Kolab::config{'fqdnhostname'});
++  	    print $repl "replica uri=ldaps://$h\n"
++  		."  binddn=\"".$Kolab::config{'bind_dn'}."\"\n"
++  		."  bindmethod=simple credentials=".$Kolab::config{'bind_pw'}."\n\n";
++  	}
++      } else {
++  	# Slave setup
++  	# Output an update dn statement instead
++  	print $repl "updatedn ".$Kolab::config{'bind_dn'}."\n";
++  	print $repl "updateref ".$Kolab::config{'ldap_master_uri'}."\n";
++      }
      }
  
      $repl->close;
+

@@ -1,0 +1,4 @@
+10-kolabconf-perl-path.diff
+30-invoke-rc.diff
+85-slapd-syncrepl-24.diff
+95-runonchange.diff

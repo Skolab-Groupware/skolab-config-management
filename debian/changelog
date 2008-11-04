@@ -1,3 +1,13 @@
+kolabconf (2.2.0-2) unstable; urgency=low
+
+  * Updated 85-slapd-syncrepl-24 to match current upstream proposed
+    patch
+  * make dependencies stronger 
+  * change imapd service path in 30-invoke-rc patch
+  * switch from dpatch to quilt 
+
+ -- Mathieu Parent <math.parent@gmail.com>  Wed, 05 Nov 2008 01:42:08 +0200
+
 kolabconf (2.2.0-1) unstable; urgency=low
 
   * New upstream version: 2.2.0

@@ -2,8 +2,8 @@ Source: kolabconf
 Section: mail
 Priority: extra
 Maintainer: Debian Kolab Maintainers <pkg-kolab-devel@lists.alioth.debian.org>
-Uploaders: Noèl Köthe <noel@debian.org>, Steffen Joeris <white@debian.org>, Peter Eisentraut <petere@debian.org>, Mathieu Parent <math.parent@gmail.com>
-Build-Depends: debhelper (>= 4), dpatch
+Uploaders: Noèl Köthe <noel@debian.org>, Steffen Joeris <white@debian.org>, Mathieu Parent <math.parent@gmail.com>
+Build-Depends: debhelper (>= 4), quilt (>= 0.40)
 Standards-Version: 3.8.0
 Homepage: http://www.kolab.org/
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-kolab/kolabconf/trunk/
@@ -12,9 +12,9 @@ Vcs-Svn: svn://svn.debian.org/pkg-kolab/kolabconf/trunk/
 Package: kolabconf
 Architecture: all
 Depends: ${perl:Depends}, 
- libkolab-perl (>= 5.8.7-20080204)
-Conflicts: kolabd (<< 2.1.99+20080204.dfsg~), libkolab-perl (<< 5.8.7-20080204~)
-Replaces: kolabd (<< 2.1.99+20080204.dfsg~), libkolab-perl (<< 5.8.7-20080204~)
+ libkolab-perl (>= 1:2.2.0-2)
+Conflicts: kolabd (<< 2.2.0-20080709.dfsg-1), libkolab-perl (<< 1:2.2.0-2)
+Replaces: kolabd (<< 2.2.0-20080709.dfsg-1), libkolab-perl (<< 1:2.2.0-2)
 Description: configuration tool for Kolab groupware server
  Kolab is a secure, scalable, and reliable groupware server.  It consists
  of a number of well-known and proven components for the standard tasks
