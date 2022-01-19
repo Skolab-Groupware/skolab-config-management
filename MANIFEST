@@ -1,0 +1,9 @@
+AUTHORS
+bin/kolabconf.in
+ChangeLog
+INSTALL
+lib/Kolab/Conf.pm
+Makefile.PL
+MANIFEST
+README
+META.yml                                 Module meta-data (added by MakeMaker)
